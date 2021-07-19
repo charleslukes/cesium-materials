@@ -1,0 +1,12 @@
+node_modules/
+/lib/
+/test/
+/components/
+/services/
+/utils/
+custom-elements.json
+# top level source
+cesium-materials.js
+cesium-materials.js.map
+cesium-materials.d.ts
+cesium-materials.d.ts.map
