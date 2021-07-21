@@ -3,32 +3,32 @@ import {customElement, property} from 'lit/decorators.js';
 import {InputTypes} from '../utils/types';
 import {sharedStyles} from './shared-styles';
 
- /**
-   * Cesium Input
-   */
+/**
+ * Cesium Input
+ */
 @customElement('cesium-input')
 export class CesiumInput extends LitElement {
-   /**
+  /**
    * The text of the input header
    */
   @property({type: String}) title = 'Name';
 
-   /**
+  /**
    * The id of the input to map label and input .
    */
   @property({type: String}) id = 'input-text';
 
-   /**
+  /**
    * The type of input.
    */
   @property({type: String}) type: InputTypes = 'color';
 
-   /**
+  /**
    * The fieldKey of the input, works like an id to properly identify input
    */
   @property({type: String}) fieldKey = 'name';
 
-   /**
+  /**
    * The value of the input
    */
   @property({type: String}) value: string | number = '0';
@@ -68,18 +68,16 @@ export class CesiumInput extends LitElement {
 
   handleInput(e: {target: HTMLInputElement}, fieldKey: string) {
     const {value} = e.target;
-    if (value) {
-       /**
-        * Triggers on inputs and emits data in format {type: string, value: string},
-        */
-      this.dispatchEvent(
-        new CustomEvent('on-cesium-input', {
-          detail: {type: fieldKey, value: value},
-          composed: true,
-          bubbles: true,
-        })
-      );
-    }
+    /**
+     * Triggers on inputs and emits data in format {type: string, value: string},
+     */
+    this.dispatchEvent(
+      new CustomEvent('on-cesium-input', {
+        detail: {type: fieldKey, value: value},
+        composed: true,
+        bubbles: true,
+      })
+    );
   }
 
   render() {

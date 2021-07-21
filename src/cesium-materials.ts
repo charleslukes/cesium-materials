@@ -231,13 +231,13 @@ export class CesiumMaterials extends LitElement {
               .id="input-${id}-${index}"
             ></cesium-input>
           `
-        )})
-        }
+        )}
       </div>
     `;
   }
 
   updateMaterial(id: string, fieldKey: string, value: string) {
+    console.log(fieldKey, value);
     this.materials = this.materials.map((data) => {
       if (data.id === id) {
         data.materialsList.map((materials) => {
@@ -281,7 +281,9 @@ export class CesiumMaterials extends LitElement {
   ) {
     const amount = materials.reduce((a, c) => {
       const fieldCost = c.materialsList.find((data) => data.fieldKey === cost);
-      return a + parseFloat(fieldCost!.value as string);
+      return (
+        a + (fieldCost?.value ? parseFloat(fieldCost!.value as string) : 0)
+      );
     }, 0);
 
     this.totalCost = `${amount}`;
